@@ -77,20 +77,18 @@ def login_required(view):
     return wrapped_view
 
 @bp.route('/mypage/', methods=('GET', 'POST'))
+@login_required
 def mypage():
     form = MyPageForm()
-    if request.method == 'POST' and form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-
-        if user.username is not form.username.data:
-            user.username = form.username.data
-            db.session.commit()
-            return redirect(url_for('main.index'))
-
-        if user.phone is not form.userphone.data:
-            user.phone = User(phone=form.phone.data)
-            db.session.commit()
-            return redirect(url_for('main.index'))
-
+    user_id = session.get('user_id')
+    if request.method == 'POST' and form.validate_on_submit(): #버튼 눌리면
+        g.user = User.query.get(user_id)  #user_id를 통해 정보 불러옴
+        if g.user.username is not form.username or g.user.phone is not form.phone:
+            # 이름이나 전화번호에 수정이 있다면
+            g.user.username = form.username.data #변경
+            g.user.phone = form.phone.data #변경
+            db.session.commit() #커밋
+            return redirect(url_for('main.index')) #메인화면으로 이동
     return render_template('auth/mypage.html', form=form)
+
 

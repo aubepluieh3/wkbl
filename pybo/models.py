@@ -29,6 +29,7 @@ fanswer_voter = db.Table(
     db.Column('user_id', db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), primary_key=True),
     db.Column('fanswer_id', db.Integer, db.ForeignKey('fanswer.id', ondelete='CASCADE'), primary_key=True)
 )
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
@@ -36,6 +37,9 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     phone = db.Column(db.String(30), unique=True, nullable=False)
     birth = db.Column(db.String(30), nullable=False)
+
+
+
 
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
