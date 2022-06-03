@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb my-3 border-bottom pb-2">
+        <h5 class="breadcrumb-item "><a href="{{ url_for('main.index') }}">Home</a></h5>
+        <h5 class="breadcrumb-item"><a>WKBL</a></h5>
+        <h5 class="breadcrumb-item active" aria-current="page">소개</h5>
+      </ol>
+    </nav>
+
+  <div class="text-center">
+        <p>
+            <br>
+        </p>
+        <img src="https://www.wkbl.or.kr/static/images/about/logo2@370x240.png" class="rounded">
+        <p>
+            <br>
+        </p>
+        <h1 class ="text-center"><strong>WKBL</strong></h1>
+        <p>
+            <br>
+        </p>
+
+         <div class="inner_cont">
+                <h3 class="title_cont">대회명</h3>
+                <div class="about_container season_logo">
+                    <img src="https://www.wkbl.or.kr/static/images/about/logo_season_big_2021_2022.png" alt="삼성생명 2020~2021 여자프로농구">
+                </div>
+				<div class="row_group col_2">
+                    <div class="col">
+                        <p>
+                            <br>
+                            <br>
+                        </p>
+                        <h3 class="title_cont">대회기간</h3>
+                        <p class="date_season"><strong>2021년 10월 24일 ~ 2022년 4월 16일</strong><br>
+                            <br></p>
+
+                    </div>
+                    <div class="col">
+                        <h3 class="title_cont">대회일정</h3>
+                        <ul class="list_season_info">
+                            <p>- 정규경기 : 2021년 10월 24일 ~ 2022년 3월 27일</p>
+                            <p>- 플레이오프 : 2022년 3월 31일 ~ 2022년 4월 5일</p>
+                            <p>- 챔피언결정전 : 2022년 4월 8일 ~ 2022년 4월 16일</p>
+                            <p>- 올스타전 : 2021년 12월 26일<br><br></p>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="title_cont">플레이오프 경기<br></h3>
+                <div class="about_container season_playoff">
+                    <span class="frame_g"><img src="https://www.wkbl.or.kr/static/images/about/img_about_playoff.jpg" alt="정규리그 경기 성적 순위"></span>
+                    <p class="txt">플레이오프 경기는 정규리그 결과 상위 4개 팀이 다음과 같이 실시한다. 플레이오프 경기는 3전 2선승제로, 챔피언 결정전은 5전 3선승제로 한다.</p>
+                </div>
+
+            </div>
+  </div>
+
+
+</div>
+
+{% endblock %}
