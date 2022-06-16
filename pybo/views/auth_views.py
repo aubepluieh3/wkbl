@@ -16,15 +16,23 @@ def signup():
     form = UserCreateForm()
     if request.method == 'POST' and form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        if not user:
-            user = User(username=form.username.data,
-                        password=generate_password_hash(form.password1.data),
-                        email=form.email.data,
-                        phone = form.phone.data,
-                        birth = form.birth.data)
-            db.session.add(user)
-            db.session.commit()
-            return redirect(url_for('main.index'))
+        user_email = User.query.filter_by(email=form.email.data).first()
+        user_phone = User.query.filter_by(phone=form.phone.data).first()
+        if not user: #사용자 이름 중복이 없다면
+            if not user_email: #이메일 중복이 없다면
+                if not user_phone: #휴대폰 중복이 없다면
+                    user = User(username=form.username.data,
+                                password=generate_password_hash(form.password1.data),
+                                email=form.email.data,
+                                phone = form.phone.data,
+                                birth = form.birth.data)
+                    db.session.add(user)
+                    db.session.commit()
+                    return redirect(url_for('main.index'))
+                else:
+                    flash('이미 존재하는 전화번호입니다.')
+            else:
+                flash('이미 존재하는 이메일입니다.')
         else:
             flash('이미 존재하는 사용자입니다.')
     return render_template('auth/signup.html', form=form)
